@@ -1,3 +1,3 @@
-# Auth by signature in Blazor Server apps
+# Authentication by Tezos signature in Blazor Server apps
 
-Reference implementation of authentication by signature in Tezos DApps built with Blazor Server.
+Reference implementation of authentication by signature, to help people build Tezos DApps with Blazor ❤️.
