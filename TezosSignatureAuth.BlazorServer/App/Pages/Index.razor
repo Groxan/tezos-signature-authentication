@@ -1,0 +1,67 @@
+﻿@page "/"
+@implements IDisposable
+@inject IJSRuntime JS
+
+<div class="max-w-2xl mx-auto text-center">
+    <h1 class="text-2xl my-4">
+        Authentication by Tezos signature
+    </h1>
+    <p class="text-lg text-slate-400 mb-8">
+        Reference implementation of authentication by signature in Blazor Server App,
+        <br class="hidden md:inline">
+        using
+        <a href="https://netezos.dev" target="_blank">Netezos SDK</a>
+        and
+        <a href="https://docs.walletbeacon.io/" target="_blank">Beacon SDK</a>
+    </p>
+
+    <AuthorizeView Context="ctx">
+        <Authorized>
+            <div class="mb-4">
+                Welcome, @ctx.User.Identity!.Name ;)
+            </div>
+            <button @onclick="SignOut">
+                Disconnect Wallet
+            </button>
+        </Authorized>
+
+        <NotAuthorized>
+            <button @onclick="SignIn">
+                Connect Wallet
+            </button>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+
+@code {
+    CancellationTokenSource Cts = new();
+
+    public async Task SignIn()
+    {
+        try
+        {
+            var msg = new AuthMessage();
+            await JS.InvokeVoidAsync("signIn", Cts.Token, "MyDapp", "ghostnet", msg.PayloadHex, msg.Timestamp);
+        }
+        catch (TaskCanceledException) { }
+    }
+
+    public async Task SignOut()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("signOut", Cts.Token, "MyDapp", "ghostnet");
+        }
+        catch (TaskCanceledException) { }
+    }
+
+    public void Dispose()
+    {
+        if (Cts != null)
+        {
+            Cts.Cancel();
+            Cts.Dispose();
+            Cts = null!;
+        }
+    }
+}

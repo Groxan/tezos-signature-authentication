@@ -1,0 +1,27 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@namespace TezosSignatureAuth.BlazorServer.App.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    <link rel="stylesheet" href="/css/blazor.css" />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+    
+    <div id="blazor-error-ui">
+        An error has occurred. This application may no longer respond until reloaded.
+    </div>
+
+    <script src="/_framework/blazor.server.js"></script>
+    <script src="/js/walletbeacon.min.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
