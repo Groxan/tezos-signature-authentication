@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "name": "tezos-signature-auth",
+  "private": true,
+  "scripts": {
+    "tw:dev": "tailwindcss -i tailwind.css -o ./wwwroot/css/tailwind.css --watch",
+    "tw:build": "tailwindcss -i tailwind.css -o ./wwwroot/css/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "@airgap/beacon-sdk": "^3.1.4",
+    "tailwindcss": "^3.1.8"
+  }
+}

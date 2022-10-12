@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+
+<div class="max-w-2xl mx-auto text-center">
+    <h1 class="text-2xl my-4">
+        Authentication by Tezos signature
+    </h1>
+    <p class="text-lg text-slate-400 mb-8">
+        Reference implementation of authentication by signature in Blazor Server App,
+        <br class="hidden md:inline">
+        using
+        <a href="https://netezos.dev" target="_blank">Netezos SDK</a>
+        and
+        <a href="https://docs.walletbeacon.io/" target="_blank">Beacon SDK</a>
+    </p>
+
+    @if (Model.IsAuthenticated)
+    {
+        <div class="mb-4">
+            Welcome, @Model.Address ;)
+        </div>
+        <form method="post" asp-page="/Auth/SignOut" onsubmit="signOut(event)">
+            <input type="hidden" name="RedirectUrl" />
+            <button type="submit">
+                Disconnect Wallet
+            </button>
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-page="/Auth/SignIn" onsubmit="signIn(event, 'MyDapp', 'ghostnet'); return false;">
+            <input type="hidden" name="PublicKey" />
+            <input type="hidden" name="Signature" />
+            <input type="hidden" name="Timestamp" />
+            <input type="hidden" name="RedirectUrl" />
+            <button type="submit">
+                Connect Wallet
+            </button>
+        </form>
+    }
+</div>

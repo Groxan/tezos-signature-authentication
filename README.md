@@ -5,8 +5,6 @@
 This repo contains examples of authentication by signature, to help people build [Tezos](https://tezos.com/) DApps with .NET ❤️.
 
 Check out examples for:
+- [ASP.NET Core](https://github.com/Groxan/tezos-signature-authentication/tree/main/TezosSignatureAuth.AspNetCore)
 - [Blazor Server](https://github.com/Groxan/tezos-signature-authentication/tree/main/TezosSignatureAuth.BlazorServer)
-- tbd...
-
----
-Any contribution is highly appreciated!
+- any contribution is highly appreciated :)
